@@ -1,7 +1,6 @@
-import CourseList from './components/CourseList';
 import React from 'react';
-import { SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-  
+import { StyleSheet, Text, TouchableOpacity } from 'react-native';
+
 const schedule = {
   "title": "CS Courses for 2018-2019",
   "courses": [
@@ -28,30 +27,36 @@ const schedule = {
   ]
 };
 
-const Banner = ({ title }) => (
-  <Text style={styles.banner}>{ title }</Text>
+const getCourseNumber = course => (
+  course.id.slice(1)
+)
+
+const Course = ({course}) => (
+  <TouchableOpacity style={styles.courseButton}>
+    <Text style={styles.courseText}>
+      {`CS ${getCourseNumber(course)}\n${course.meets}`}
+    </Text>
+  </TouchableOpacity>
 );
 
-const App = () => {
-  return (
-    <SafeAreaView style={styles.container}>
-      <Banner title={schedule.title} />
-      <CourseList courses={schedule.courses} />
-    </SafeAreaView>
-  );
-};
-  
 const styles = StyleSheet.create({
-  container: {
+  courseButton: {
     flex: 1,
-    alignItems: 'center',
+    borderRadius: 5,
     justifyContent: 'center',
-    paddingTop: 20,
+    alignItems: 'center',
+    margin: 10,
+    height: 60,
+    padding: 10,
+    minWidth: 90,
+    maxWidth: 90,
+    backgroundColor: '#66b0ff',
   },
-  banner: {
-    color: '#888',
-    fontSize: 32,
+  courseText:{
+    color: '#fff',
+    fontSize: 12,
+    textAlign: 'center',
   },
 });
 
-export default App;
+export default Course;
