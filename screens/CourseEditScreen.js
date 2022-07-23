@@ -4,16 +4,7 @@ import Form from "../components/Form";
 import * as Yup from "yup";
 import { firebase } from "../utils/firebase";
 
-const Field = ({ label, value }) => {
-  return (
-    <View style={styles.fieldContainer}>
-      <Text style={styles.label}>{label}</Text>
-      <Text style={styles.field}>{value}</Text>
-    </View>
-  );
-};
-
-const CourseEditScreen = ({ navigation, route }) => {
+const CourseEditScreen = ({ route }) => {
   const course = route.params.course;
   const [submitError, setSubmitError] = useState('');
 
